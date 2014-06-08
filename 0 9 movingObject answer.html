@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Moving Object</title>
+
+<script language="Javascript">
+
+//  Declare ALL variables
+
+	var timer, T, i=0, distance=0;
+	var xpos=-1;
+	var ypos=-1;
+	var iniX;
+	var iniY;
+	var ok=1;
+	var start = screen.availWidth-1;
+	var startt = screen.availHeight-1;
+	var counter = 0;
+
+//  Set up the initial picture location
+//  call random direction and distance function
+
+function init()
+{
+	iniX = screen.availWidth - start;
+	iniY = screen.availHeight;
+	document.getElementById("pic").style.left=iniX;
+	document.getElementById("pic").style.top=iniY;
+
+//  call randomDirDis() function every 5 mSeconds
+
+	timer = setInterval('randomDirDis()', 50)
+}
+
+//  choose random direction and distance
+
+
+function movePic()
+{
+
+//  check boundries and change direction
+	i++;
+	if ((iniX > screen.availWidth-100)||(iniX < 0)) {xpos*=-1; i+= distance;}
+	if ((iniY > screen.availHeight-250)||(iniY < 0)) {ypos*=-1;  i+= distance;}
+
+//  move to the next picture display location, 1 pixels a time
+
+	iniX += xpos;
+	iniY += ypos;
+	document.getElementById("pic").style.left=iniX;
+	document.getElementById("pic").style.top=iniY;
+
+	setTimeout('movePic()',1);
+}
+
+</script>
+</head>
+<body onload=init()>
+	<img src="person1.gif" id ="pic" style="left:20px; position:absolute;">
+</body>
+</html> 
